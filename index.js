@@ -1,9 +1,9 @@
 var express = require("express");
 var mongoose = require("mongoose");
-// var bodyParser = require("body-parser");
+ var bodyParser = require("body-parser");
 var app = express();
 var a = (process.env.PORT || 3000)
-//app.use(bodyParser.json())
+app.use(bodyParser.json())
 
 
 
@@ -30,7 +30,9 @@ app.get("/e", function(req,res,next){
 
 app.post("/express", function (req, res, next) {
    var newstudent = new studentModel({
+
        name: "mubashir",
+       name:req.body.send,
        age: 21
    })
 newstudent.save(function(err,data){
