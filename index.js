@@ -6,13 +6,24 @@ var a = (process.env.PORT || 3000)
 //app.use(bodyParser.json())
 
 
+
+
 var studentscehema = new mongoose.Schema({
     name: String,
     age: Number
 })
 var studentModel = mongoose.model("student",studentscehema);
 
-
+app.get("/e", function(req,res,next){
+     studentModel.find({},function(err,data){
+         if(!err){
+             res.send("data is "+data)
+         }
+         else{
+             res.send(err)
+         }
+     })
+  })
 
 
 
