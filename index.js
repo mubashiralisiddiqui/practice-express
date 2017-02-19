@@ -1,20 +1,44 @@
 var express = require("express");
-// var mongoose = require("mongoose");
+var mongoose = require("mongoose");
 // var bodyParser = require("body-parser");
 var app = express();
 var a = (process.env.PORT || 3000)
 //app.use(bodyParser.json())
 
-app.get("/",function(req,res,next){
-   res.send("helloworld")
+
+var studentscehema = new mongoose.Schema({
+    name: String,
+    age: Number
 })
-app.get("/express",function(req,res,next){
-   res.send("helloexpress")
+var studentModel = mongoose.model("student",studentscehema);
+
+
+
+
+
+
+app.get("/express", function (req, res, next) {
+   var newstudent = new studentModel({
+       name: "mubashir",
+       age: 21
+   })
+newstudent.save(function(err,data){
+ if (!err){
+     res.send("your data is send")
+ }
+ else{
+     res.send("error")
+ }
+})
 })
 
-app.listen(a,function(){
-    
-        console.log("your app is runnningon"+a+"port");
-        
-    
+app.listen(a, function () {
+
+    console.log("your app is runnningon" + a + "port");
+
+
 })
+mongoose.connect('mongodb://mubashir:123@ds157499.mlab.com:57499/practicemongoose')
+mongoose.connection.on('connected', function () {
+    console.log("Mongoose is connected");
+ });
