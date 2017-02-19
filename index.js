@@ -17,7 +17,7 @@ var studentModel = mongoose.model("student",studentscehema);
 
 
 
-app.get("/express", function (req, res, next) {
+app.post("/express", function (req, res, next) {
    var newstudent = new studentModel({
        name: "mubashir",
        age: 21
