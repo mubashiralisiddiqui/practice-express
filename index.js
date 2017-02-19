@@ -8,6 +8,9 @@ var a = (process.env.PORT || 3000)
 app.get("/",function(req,res,next){
    res.send("helloworld")
 })
+app.get("/express",function(req,res,next){
+   res.send("helloexpress")
+})
 
 app.listen(a,function(){
     
